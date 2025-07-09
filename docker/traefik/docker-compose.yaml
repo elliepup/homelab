@@ -1,0 +1,25 @@
+services:
+  traefik:
+    image: docker.io/library/traefik:latest
+    container_name: traefik
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      # - "8080:8080" # Dashboard
+    volumes:
+      - /run/docker.sock:/run/docker.sock:ro
+      - ./config/:/etc/traefik/:ro
+      - ./certs/:/var/traefik/certs/:rw
+      # - traefik-logs:/var/log/traefik  # <-- If using CrowdSec, uncomment this line
+    environment:
+      - CF_DNS_API_TOKEN=${CLOUDFLARE_DNS_API_TOKEN}
+    networks:
+      - proxy
+    
+networks:
+  proxy:
+    external: true
+
+# volumes:  # <-- If using CrowdSec, uncomment this section
+#   traefik-logs:
