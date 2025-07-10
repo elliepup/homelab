@@ -1,0 +1,8 @@
+# This file allows CrowdSec to monitor Traefik logs for security events.
+# It is mounted in the CrowdSec container and specifies the log file location.
+# Ensure that the Traefik logs are accessible to CrowdSec by mounting the log directory in the CrowdSec container.
+# Also, ensure that the Traefik logs are being written to the specified path in the Traefik configuration.
+filenames:
+  - /var/log/traefik/*
+labels:
+  type: traefik

@@ -22,8 +22,15 @@ entryPoints:
     #     entryPoint:
     #       to: websecure
     #       scheme: https
+    # http: # Uncomment if you are using the Traefik Bouncer for CrowdSec
+    #   middlewares:
+    #     - crowdsec-bouncer@file
   websecure:
     address: :443
+    # http: # Uncomment if you are using the Traefik Bouncer for CrowdSec
+    #   middlewares:
+    #     - crowdsec-bouncer@file
+
 
 certificatesResolvers:
   cloudflare:
